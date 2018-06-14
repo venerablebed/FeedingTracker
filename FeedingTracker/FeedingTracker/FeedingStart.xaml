@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FeedingTracker"
+             x:Class="FeedingTracker.FeedingStart"
+             Title="Feeding/Poop Tracker">
+
+    <StackLayout x:Name="mainLayout">
+        <Label Text="Start Time" x:Name="lblStartTime" HorizontalOptions="Center" TextColor="Green" FontSize="Large"></Label>
+        <Label Text="Stop Time" x:Name="lblStopTime" HorizontalOptions="Center" TextColor="Red" FontSize="Large"></Label>
+        <Button Text="Start Feeding" x:Name="btnStartStop" HorizontalOptions="Center" Clicked="btnStartStop_Clicked"></Button>
+        <Button Text="Set Details..." x:Name="btnShowDetails" HorizontalOptions="Center" Clicked="btnShowDetails_Clicked" IsVisible="False"></Button>
+    </StackLayout>
+
+
+</ContentPage>
