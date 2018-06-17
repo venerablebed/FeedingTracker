@@ -12,25 +12,10 @@
                 <Switch x:Name="switchFormula"></Switch>
                 <Label x:Name="lblFormula" Text="Formula" FontSize="Large"></Label>
             </StackLayout>
-            <Picker x:Name="pickAmount" Title="Select an amount">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>1 oz</x:String>
-                        <x:String>1.5 oz</x:String>
-                        <x:String>2 oz</x:String>
-                        <x:String>2.5 oz</x:String>
-                        <x:String>3 oz</x:String>
-                        <x:String>3.5 oz</x:String>
-                        <x:String>4 oz</x:String>
-                        <x:String>5.5 oz</x:String>
-                        <x:String>5 oz</x:String>
-                        <x:String>5.5 oz</x:String>
-                        <x:String>6 oz</x:String>
-                        <x:String>6.5 oz</x:String>
-                        <x:String>7 oz</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
+            <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                <Label x:Name="lblAmount" Text="Amount" FontSize="Large"></Label>
+                <Entry x:Name="entAmount" Keyboard="Numeric" WidthRequest="100"></Entry>
+            </StackLayout>
             <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                 <Switch x:Name="switchDiaperWet"></Switch>
                 <Label x:Name="lblDiaperWet" Text="Diaper Wet" FontSize="Large"></Label>

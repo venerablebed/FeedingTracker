@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FeedingTracker.Droid;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,11 +32,14 @@ namespace FeedingTracker
 
         private void btnSaveFeeding_Clicked(object sender, EventArgs e)
         {
+            bool success = false;
+
             var swBreast = this.FindByName<Switch>("switchBreastMilk");
             var swFormula = this.FindByName<Switch>("switchFormula");
             var swDiaperWet = this.FindByName<Switch>("switchDiaperWet");
             var swDiaperDirty = this.FindByName<Switch>("switchDiaperDirty");
             var swDiaperClean = this.FindByName<Switch>("switchDiaperClean");
+            var entAmount = this.FindByName<Entry>("entAmount");
 
             string milkType = string.Empty;
             string diaperState = string.Empty;
@@ -72,21 +76,37 @@ namespace FeedingTracker
                 }
             }
 
-            var picker = this.FindByName<Picker>("pickAmount");
+            //var picker = this.FindByName<Picker>("pickAmount");
+            var amount = double.Parse(entAmount.Text);
 
             try
             {
                 //Log.Logger.Information($"{_startTime},{milkType}, {picker.SelectedItem.ToString()}, {diaperState}, {_stopTime}");
                 //Log.CloseAndFlush();
 
-                App.Database.
+                var feeding = new Feeding();
+                feeding.Amount = amount;
+                feeding.Date = DateTime.Now.ToString("MM-dd-YYYY");
+                feeding.Diaper_State = diaperState;
+                feeding.Milk_Type = milkType;
+                feeding.Start_Time = _startTime;
+                feeding.End_Time = _stopTime;
+
+                if (App.Database.SaveItem(feeding) > 0)
+                {
+                    success = true;
+                    var answer = DisplayAlert("Success", "Feeding saved", "OK");
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Exception writing feeding record: {ex}");
+                var answer = DisplayAlert("Error", $"Feeding failed to save. ex = {ex.ToString()}", "OK");
             }
 
-            Navigation.PopToRootAsync();
+            if (success)
+            {
+                Navigation.PopToRootAsync();
+            }
         }
         
     }
