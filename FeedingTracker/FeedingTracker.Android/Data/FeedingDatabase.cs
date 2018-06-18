@@ -28,10 +28,10 @@ namespace FeedingTracker.Droid.Data
             return database.Table<Feeding>().ToList<Feeding>();
         }
 
-        //public Task<List<TodoItem>> GetItemsNotDoneAsync()
-        //{
-        //    return database.QueryAsync<TodoItem>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
-        //}
+        public List<Feeding> GetInProgressFeedings()
+        {
+            return database.Query<Feeding>("SELECT * FROM [Feeding] WHERE [End_Time] is null");
+        }
 
         //public Task<TodoItem> GetItemAsync(int id)
         //{

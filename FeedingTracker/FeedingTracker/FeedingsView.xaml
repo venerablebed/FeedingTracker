@@ -2,18 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FeedingTracker.FeedingsView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ListItemTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+            </Style>
+            <Style x:Key="ListItemDetailTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Small"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
   <ListView x:Name="MyListView"
             ItemsSource="{Binding Items}"
             ItemTapped="Handle_ItemTapped"
-            CachingStrategy="RecycleElement">
-            
-    <!--Built in Cells--><!--
-    <ListView.ItemTemplate>
-        <DataTemplate>
-            <TextCell Text="{Binding .}" />
-        </DataTemplate>
-    </ListView.ItemTemplate>-->
-    
+            CachingStrategy="RecycleElement"
+            RowHeight="50">
+                
     <!--Custom View Cells-->
     
     <ListView.ItemTemplate>

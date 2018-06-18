@@ -19,15 +19,12 @@ namespace FeedingTracker
         public bool DiaperDirty { get; set; }
         public bool DiaperClean { get; set; }
 
-        private string _startTime;
-        private string _stopTime;    
+        private Feeding _inProgressFeeding;
 
-        public FeedingDeets (string start, string stop)
+        public FeedingDeets(Feeding newFeeding)
 		{
             InitializeComponent();
-
-            _startTime = start;
-            _stopTime = stop;
+            _inProgressFeeding = newFeeding;
         }
 
         private void btnSaveFeeding_Clicked(object sender, EventArgs e)
@@ -75,24 +72,16 @@ namespace FeedingTracker
                     diaperState = "Dirty";
                 }
             }
-
-            //var picker = this.FindByName<Picker>("pickAmount");
+            
             var amount = double.Parse(entAmount.Text);
 
             try
-            {
-                //Log.Logger.Information($"{_startTime},{milkType}, {picker.SelectedItem.ToString()}, {diaperState}, {_stopTime}");
-                //Log.CloseAndFlush();
+            {                
+                _inProgressFeeding.Amount = amount;
+                _inProgressFeeding.Diaper_State = diaperState;
+                _inProgressFeeding.Milk_Type = milkType;
 
-                var feeding = new Feeding();
-                feeding.Amount = amount;
-                feeding.Date = DateTime.Now.ToString("MM-dd-yyyy");
-                feeding.Diaper_State = diaperState;
-                feeding.Milk_Type = milkType;
-                feeding.Start_Time = _startTime;
-                feeding.End_Time = _stopTime;
-
-                if (App.Database.SaveItem(feeding) > 0)
+                if (App.Database.SaveItem(_inProgressFeeding) > 0)
                 {
                     success = true;
                     var answer = DisplayAlert("Success", "Feeding saved", "OK");

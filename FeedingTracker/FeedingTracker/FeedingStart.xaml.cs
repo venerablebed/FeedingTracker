@@ -1,7 +1,9 @@
-﻿using System;
+﻿using FeedingTracker.Droid;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -12,26 +14,36 @@ namespace FeedingTracker
         private const string _startButtonLabel = "Start Feeding";
         private const string _stopButtonLabel = "Stop Feeding";
         private const string _startTimeLabel = "Start Time";
-        private const string _stopTimeLabel = "Stop Time";
+        
+        Label _lblStartTime;        
+        Button _btnStartStop;
+        Feeding _inProgressFeeding = null;
 
         private bool _started = false;
 
 		public FeedingStart()
 		{
             InitializeComponent();
+            
+            _lblStartTime = this.FindByName<Label>("lblStartTime");        
+            _btnStartStop = this.FindByName<Button>("btnStartStop");            
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            ResetControls();
+            
+            if (CheckForInProgressFeedings() == false)
+            {
+                ResetControls();
+            }
         }
 
         private void btnStartStop_Clicked(object sender, EventArgs e)
         {
             if (!_started)
             {
-                StartFeeding();
+                StartFeeding(DateTime.Now);
             }
             else
             {
@@ -40,57 +52,64 @@ namespace FeedingTracker
         }
 
         private void ResetControls()
-        {
-            var lblStartTime = this.FindByName<Label>("lblStartTime");
-            lblStartTime.Text = _startTimeLabel;
-
-            var lblStopTime = this.FindByName<Label>("lblStopTime");
-            lblStopTime.Text = _stopTimeLabel;
-
-            var btnShowDetails = this.FindByName<Button>("btnShowDetails");
-            btnShowDetails.IsVisible = false;
-
+        {            
+            lblStartTime.Text = _startTimeLabel;                           
             _started = false;
         }
 
-        private void StartFeeding()
-        {
-            // set the start label equal to the current time
-            var lblStartTime = this.FindByName<Label>("lblStartTime");
-            lblStartTime.Text = DateTime.Now.ToString("h:mm tt");
+        private void StartFeeding(DateTime startDatetime)
+        {            
+            _lblStartTime.Text = $"Feeding started at {startDatetime.ToLocalTime().ToString("MM-dd-yyyy h:mm tt")}";            
+            _btnStartStop.Text = _stopButtonLabel;
 
-            var btnStop = this.FindByName<Button>("btnStartStop");
-            btnStop.Text = _stopButtonLabel;
+            if (_inProgressFeeding == null)
+            {
+                SaveStartedFeeding(startDatetime);
+            }            
 
             _started = true;
         }
 
         private void StopFeeding()
         {
-            // set the stop label equal to the current time
-            var lblStopTime = this.FindByName<Label>("lblStopTime");
-            lblStopTime.Text = DateTime.Now.ToString("h:mm tt");
-
-            var btnStop = this.FindByName<Button>("btnStartStop");
-            btnStop.Text = _startButtonLabel;
-
-            // show button to navigate to next view
-            var btnShowDetails = this.FindByName<Button>("btnShowDetails");
-            btnShowDetails.IsVisible = true;
+            var stopDatetime = DateTime.Now;            
+            _btnStartStop.Text = _startButtonLabel;
 
             _started = false;
-        }
 
-        private void btnShowDetails_Clicked(object sender,EventArgs e)
-        {
-            var lblStartTime = this.FindByName<Label>("lblStartTime");
-            var lblStopTime = this.FindByName<Label>("lblStopTime");
-            Navigation.PushAsync(new FeedingDeets(lblStartTime.Text, lblStopTime.Text));
+            _inProgressFeeding.End_Time = stopDatetime;
+            
+            Navigation.PushAsync(new FeedingDeets(_inProgressFeeding));            
         }
 
         private void btnViewDetails_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new FeedingsView());
+        }
+
+        void SaveStartedFeeding(DateTime startDatetime)
+        {
+            var newFeeding = new Feeding();
+            newFeeding.Start_Time = startDatetime;
+
+            _inProgressFeeding = newFeeding;
+
+            App.Database.SaveItem(_inProgressFeeding);
+        }
+
+        bool CheckForInProgressFeedings()
+        {
+            var inProgressFeedings = App.Database.GetInProgressFeedings();
+
+            if (inProgressFeedings != null && inProgressFeedings.Count > 0)
+            {
+                _inProgressFeeding = inProgressFeedings[0];
+                StartFeeding(_inProgressFeeding.Start_Time);
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

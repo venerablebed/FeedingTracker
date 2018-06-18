@@ -20,7 +20,6 @@ namespace FeedingTracker
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FeedingsView : ContentPage
     {
-        public ObservableCollection<string> Items { get; set; }
         public List<FeedingsViewItem> ConvertedFeedings { get; set; }
 
         public FeedingsView()
@@ -28,15 +27,6 @@ namespace FeedingTracker
             InitializeComponent();
 
             CreateFeedingDict();
-
-            Items = new ObservableCollection<string>
-            {
-                "Item 1",
-                "Item 2",
-                "Item 3",
-                "Item 4",
-                "Item 5"
-            };
 			
 			MyListView.ItemsSource = ConvertedFeedings;
         }
@@ -60,9 +50,15 @@ namespace FeedingTracker
 
             foreach (Feeding feed in feedings)
             {
+                var date = feed.Start_Time.ToLocalTime().ToString("MM-dd-yyyy");
+                var startTime = feed.Start_Time.ToLocalTime().ToString("h:mm tt");
+                var endTime = feed.End_Time.Value.ToLocalTime().ToString("h:mm tt");
+                var milk = (feed.Milk_Type == "Breast" ? $"{feed.Milk_Type} Milk" : feed.Milk_Type);
+                var elapsedTime = (feed.End_Time.Value - feed.Start_Time).Duration().TotalMinutes;
+
                 var newItem = new FeedingsViewItem {
-                    Name = $"{feed.Date} {feed.Start_Time} - {feed.End_Time}",
-                    Detail = $"{feed.Amount} oz - {feed.Milk_Type} - {feed.Diaper_State}"
+                    Name = $"{date}   {startTime} -> {endTime} ({elapsedTime} min)",
+                    Detail = $"{feed.Amount} oz - {milk} - Diaper {feed.Diaper_State}"
                 };
 
                 ConvertedFeedings.Add(newItem);
