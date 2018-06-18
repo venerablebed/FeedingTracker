@@ -13,6 +13,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)FeedingStart.xaml" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)FeedingDeets.xaml" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)FeedingsView.xaml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)TabContainerPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -26,6 +27,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)FeedingsView.xaml.cs">
       <DependentUpon>FeedingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)TabContainerPage.xaml.cs">
+      <DependentUpon>TabContainerPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

@@ -31,7 +31,8 @@ namespace FeedingTracker
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage(new FeedingStart());
+            //MainPage = new NavigationPage(new FeedingStart());
+            MainPage = new TabContainerPage();
 		}
 
         protected override void OnStart ()

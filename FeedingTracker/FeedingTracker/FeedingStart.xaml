@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:FeedingTracker"
              x:Class="FeedingTracker.FeedingStart"
-             Title="Feeding/Poop Tracker">
+             Title="Track Feeding">
 
     <StackLayout x:Name="mainLayout">
         <Label Text="Start Time" x:Name="lblStartTime" HorizontalOptions="Center" TextColor="Green" FontSize="Large"></Label>
