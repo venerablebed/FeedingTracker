@@ -10,8 +10,6 @@
         <Label Text="Stop Time" x:Name="lblStopTime" HorizontalOptions="Center" TextColor="Red" FontSize="Large"></Label>
         <Button Text="Start Feeding" x:Name="btnStartStop" HorizontalOptions="Center" Clicked="btnStartStop_Clicked"></Button>
         <Button Text="Set Details..." x:Name="btnShowDetails" HorizontalOptions="Center" Clicked="btnShowDetails_Clicked" IsVisible="False"></Button>
-    </StackLayout>
-    <StackLayout x:Name="mainSubLayout">
         <Button Text="View Feedings" x:Name="btnViewFeedings" HorizontalOptions="Center" Clicked="btnViewDetails_Clicked" IsVisible="True"></Button>
     </StackLayout>
 

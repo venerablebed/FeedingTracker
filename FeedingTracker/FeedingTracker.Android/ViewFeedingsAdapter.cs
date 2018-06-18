@@ -33,7 +33,7 @@ namespace FeedingTracker.Droid
 
         public override int Count {
             get { return _feedings.Length; }
-        };
+        }
 
         public override long GetItemId(int position)
         {

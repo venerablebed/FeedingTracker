@@ -87,5 +87,10 @@ namespace FeedingTracker
             var lblStopTime = this.FindByName<Label>("lblStopTime");
             Navigation.PushAsync(new FeedingDeets(lblStartTime.Text, lblStopTime.Text));
         }
+
+        private void btnViewDetails_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new FeedingsView());
+        }
     }
 }

@@ -12,6 +12,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)FeedingStart.xaml" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)FeedingDeets.xaml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)FeedingsView.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -23,19 +24,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)FeedingStart.xaml.cs">
       <DependentUpon>FeedingStart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewFeedings.xaml.cs">
-      <SubType>Code</SubType>
+    <Compile Include="$(MSBuildThisFileDirectory)FeedingsView.xaml.cs">
+      <DependentUpon>FeedingsView.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)FeedingDeets.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)FeedingDetails.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)ViewFeedings.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
 </Project>

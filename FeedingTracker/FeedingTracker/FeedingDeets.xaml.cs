@@ -86,7 +86,7 @@ namespace FeedingTracker
 
                 var feeding = new Feeding();
                 feeding.Amount = amount;
-                feeding.Date = DateTime.Now.ToString("MM-dd-YYYY");
+                feeding.Date = DateTime.Now.ToString("MM-dd-yyyy");
                 feeding.Diaper_State = diaperState;
                 feeding.Milk_Type = milkType;
                 feeding.Start_Time = _startTime;
