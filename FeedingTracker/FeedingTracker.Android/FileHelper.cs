@@ -18,9 +18,6 @@ namespace FeedingTracker.Droid
     {
         public string GetLocalFilePath(string filename)
         {
-            //string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            //return Path.Combine(path, filename);
-
             return Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), filename);
         }
     }

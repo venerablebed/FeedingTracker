@@ -23,12 +23,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)FeedingStart.xaml.cs">
       <DependentUpon>FeedingStart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewFeedings.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)FeedingDeets.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)FeedingDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)ViewFeedings.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
