@@ -44,7 +44,7 @@ namespace FeedingTracker
 
         void CreateFeedingDict()
         {
-            var feedings = App.Database.GetItems();
+            var feedings = App.Database.GetFeedings();
 
             ConvertedFeedings = new List<FeedingsViewItem>();
 
@@ -54,10 +54,10 @@ namespace FeedingTracker
                 var startTime = feed.Start_Time.ToLocalTime().ToString("h:mm tt");
                 var endTime = feed.End_Time.Value.ToLocalTime().ToString("h:mm tt");
                 var milk = (feed.Milk_Type == "Breast" ? $"{feed.Milk_Type} Milk" : feed.Milk_Type);
-                var elapsedTime = (feed.End_Time.Value - feed.Start_Time).Duration().TotalMinutes;
+                //var elapsedTime = (feed.End_Time.Value - feed.Start_Time).Duration().TotalMinutes.ToString("%f.2");
 
                 var newItem = new FeedingsViewItem {
-                    Name = $"{date}   {startTime} -> {endTime} ({elapsedTime} min)",
+                    Name = $"{date}   {startTime} -> {endTime}",
                     Detail = $"{feed.Amount} oz - {milk} - Diaper {feed.Diaper_State}"
                 };
 

@@ -13,7 +13,9 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)FeedingStart.xaml" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)FeedingDeets.xaml" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)FeedingsView.xaml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)TabContainerPage.xaml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)MainNavigation.xaml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)PumpingDeets.xaml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)PumpingsView.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -28,8 +30,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)FeedingsView.xaml.cs">
       <DependentUpon>FeedingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)TabContainerPage.xaml.cs">
-      <DependentUpon>TabContainerPage.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)MainNavigation.xaml.cs">
+      <DependentUpon>MainNavigation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)PumpingDeets.xaml.cs">
+      <DependentUpon>PumpingDeets.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)PumpingsView.xaml.cs">
+      <DependentUpon>PumpingsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

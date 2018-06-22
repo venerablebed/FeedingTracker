@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FeedingTracker.MainNavigation"
+             Title="Feeding Tracker">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Button x:Name="btnTrackFeeding" Text="Track Feeding" Clicked="btnTrackFeeding_Clicked"></Button>
+            <Button x:Name="btnViewFeedings" Text="View Feedings" Clicked="btnViewFeedings_Clicked"></Button>
+            <Button x:Name="btnTrackPumping" Text="Track Pumping" Clicked="btnTrackPumping_Clicked"></Button>
+            <Button x:Name="btnViewPumpings" Text="View Pumpings" Clicked="btnViewPumpings_Clicked"></Button>
+            <Button x:Name="btnCleanDatabase" Text="Clean Database" Clicked="btnCleanDatabase_Clicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

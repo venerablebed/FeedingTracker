@@ -21,9 +21,12 @@ namespace FeedingTracker.Droid.Data
         {
             database = new SQLiteConnection(new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid(), dbPath);
             database.CreateTable<Feeding>();
+            database.CreateTable<Pumping>();
         }
 
-        public List<Feeding> GetItems()
+        #region Feedings
+
+        public List<Feeding> GetFeedings()
         {
             return database.Table<Feeding>().ToList<Feeding>();
         }
@@ -33,12 +36,7 @@ namespace FeedingTracker.Droid.Data
             return database.Query<Feeding>("SELECT * FROM [Feeding] WHERE [End_Time] is null");
         }
 
-        //public Task<TodoItem> GetItemAsync(int id)
-        //{
-        //    return database.Table<TodoItem>().Where(i => i.ID == id).FirstOrDefaultAsync();
-        //}
-
-        public int SaveItem(Feeding feed)
+        public int SaveFeeding(Feeding feed)
         {
             if (feed.ID != 0)
             {
@@ -50,9 +48,42 @@ namespace FeedingTracker.Droid.Data
             }
         }
 
-        public int DeleteItem(Feeding feed)
+        public int DeleteFeeding(Feeding feed)
         {
             return database.Delete(feed);
         }
+
+        #endregion
+
+        #region Pumpings
+
+        public List<Pumping> GetPumpings()
+        {
+            return database.Table<Pumping>().ToList<Pumping>();
+        }
+
+        public List<Pumping> GetInProgressPumpings()
+        {
+            return database.Query<Pumping>("SELECT * FROM [Pumping] WHERE [End_Time] is null");
+        }
+
+        public int SavePumping(Pumping pump)
+        {
+            if (pump.ID != 0)
+            {
+                return database.Update(pump);
+            }
+            else
+            {
+                return database.Insert(pump);
+            }
+        }
+
+        public int DeletePumping(Pumping pump)
+        {
+            return database.Delete(pump);
+        }
+
+        #endregion
     }
 }

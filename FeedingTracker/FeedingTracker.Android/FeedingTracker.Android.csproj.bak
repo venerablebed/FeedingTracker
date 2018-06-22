@@ -72,7 +72,6 @@
     <Compile Include="FileHelper.cs" />
     <Compile Include="Models\Feeding.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Models\Pumping.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

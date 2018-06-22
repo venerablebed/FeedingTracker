@@ -81,7 +81,7 @@ namespace FeedingTracker
                 _inProgressFeeding.Diaper_State = diaperState;
                 _inProgressFeeding.Milk_Type = milkType;
 
-                if (App.Database.SaveItem(_inProgressFeeding) > 0)
+                if (App.Database.SaveFeeding(_inProgressFeeding) > 0)
                 {
                     success = true;
                     var answer = DisplayAlert("Success", "Feeding saved", "OK");

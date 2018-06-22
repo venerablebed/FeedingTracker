@@ -94,7 +94,7 @@ namespace FeedingTracker
 
             _inProgressFeeding = newFeeding;
 
-            App.Database.SaveItem(_inProgressFeeding);
+            App.Database.SaveFeeding(_inProgressFeeding);
         }
 
         bool CheckForInProgressFeedings()

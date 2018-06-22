@@ -2,13 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:FeedingTracker"
-             x:Class="FeedingTracker.FeedingStart"
-             Title="Track Feeding">
+             x:Class="FeedingTracker.FeedingStart">
 
     <StackLayout x:Name="mainLayout">
         <Label Text="Start Time" x:Name="lblStartTime" HorizontalOptions="Center" TextColor="Green" FontSize="Large"></Label>
         <Button Text="Start Feeding" x:Name="btnStartStop" HorizontalOptions="Center" Clicked="btnStartStop_Clicked"></Button>
-        <Button Text="View Feedings" x:Name="btnViewFeedings" HorizontalOptions="Center" Clicked="btnViewDetails_Clicked" IsVisible="True"></Button>
     </StackLayout>
 
 
