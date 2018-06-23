@@ -58,5 +58,37 @@ namespace FeedingTracker
                 var answer = DisplayAlert("Well...", "...there's nothing to clean", "OK");
             }
         }
+
+        async void btnResetDatabase_Clicked(object sender, EventArgs e)
+        {
+            var feedings = App.Database.GetFeedings();
+            var pumpings = App.Database.GetPumpings();
+
+            var answer = await DisplayAlert("Delete?", $"Delete all data? ({feedings.Count} feedings, {pumpings.Count} pumpings)", "OK", "Cancel");
+            
+            if (answer)
+            {
+                try
+                {
+                    foreach (Feeding feed in feedings)
+                    {
+                        App.Database.DeleteFeeding(feed);
+                    }
+
+                    foreach (Pumping pump in pumpings)
+                    {
+                        App.Database.DeletePumping(pump);
+                    }
+
+                    await DisplayAlert("Success", "Successfully deleted all database records.", "OK");
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Uh oh...", $"Error resetting database. ex = {ex.ToString()}", "OK");
+                }   
+            }
+
+            return;
+        }
     }
 }

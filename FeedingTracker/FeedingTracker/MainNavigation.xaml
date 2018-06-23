@@ -10,6 +10,7 @@
             <Button x:Name="btnTrackPumping" Text="Track Pumping" Clicked="btnTrackPumping_Clicked"></Button>
             <Button x:Name="btnViewPumpings" Text="View Pumpings" Clicked="btnViewPumpings_Clicked"></Button>
             <Button x:Name="btnCleanDatabase" Text="Clean Database" Clicked="btnCleanDatabase_Clicked"></Button>
+            <Button x:Name="btnResetDatabase" Text="Reset Database" Clicked="btnResetDatabase_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
